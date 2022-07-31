@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,30 +10,44 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
+            darkMode:'class',
             theme: {
                 extend: {
                     spacing:{
                         13:'3.25rem',
                     },
                     fontFamily:{
-                        inter:['Inter']
+                        inter:['Inter'],
                     },
                     colors:{
                         wpu:'#bada55',
-                        kopi:'#c0ffee'
-                    }
+                        kopi:'#c0ffee',
+                    },
+                    animation:{
+                        'spin-slow': 'spin 3s linear infinite',
+                        wiggle:'wiggle 1s ease-in-out infinite'
+                    },
+                    keyframes:{
+                        wiggle:{
+                            '0%, 100%':{transform:'rotate (-3deg)'},
+                            '50%':{transform:'rotate(3deg)'},
+                        }
+                    },
                 }
             }
         }
     </script>
     <style type="text/tailwindcss">
+        #toggle:checked ~ label div.toggle-circle{
+            @apply translate-x-3;
+        }
         /* *{
             border: 1px solid red;
         } */
     </style>
     <title>Belajar TailwindCSS</title>
 </head>
-<body>
+<body class="dark:bg-slate-800 dark:text-slate-200">
     <h1 class="text-6xl font-bold text-center">Mari Belajar <span class="bg-gradient-to-r from-blue-500 to-teal-400 bg-clip-text text-transparent">TailwindCSS</span> </h1>
     <section class="mb-10">
         <h2>Spacing</h2>
@@ -61,6 +75,76 @@
     <div class="mt-32 max-w-xl mx-auto h-96 bg-red-300 bg-contain bg-no-repeat bg-center rounded-2xl shadow-xl shadow-blue-600 overflow-hidden border-8 flex" style="background-image: url('./1.jpg') ;">
         <div class="w-[200px] h-[200px] bg-white/30 m-auto backdrop-blur-lg rounded-full"></div>
     </div>
+    <hr class="my-20">
+    <div class="flex justify-center">
+        <span class="text-sm text-slate-500 mr-2">Light</span>
+        <input type="checkbox" name="" id="toggle" class="hidden">
+        <label for="toggle">
+            <div class="w-9 h-5 bg-slate-500 rounded-full flex items-center p-1 cursor-pointer">
+                <div class="w-4 h-4 bg-white rounded-full toggle-circle">
+
+                </div>
+            </div>
+        </label>
+        <span class="text-sm text-slate-500 ml-2">Dark</span>
+    </div>
+
+    <div class="my-20">
+        <button class="my-10 bg-sky-500 px-5 py-2 rounded-full font-inter mx-auto block hover:bg-sky-600 active:bg-sky-700 focus:ring-sky-300 dark:bg-slate-300 dark:hover:text-slate-900 dark:hover:bg-slate-100">Simpan</button>
+    </div>
+    <div class="max-w-lg my-10 border border-state-200 rounded-xl mx-auto p-5 shadow-md font-inter hover:bg-sky-500 group font-serif dark:hover:bg-slate-300">
+        <h5 class="font-bold text-slate-700 text-lg mb-3 group-hover:text-white dark:group-hover:text-slate-800">My card</h5>
+        <p class="text-slate-600 selection:bg-lime-300 selection:text-white first-line:uppercase first-line:tracking-widest first-letter:text-7xl first-letter:float-left first-letter:mr-3 dark:group-hover:text-slate-800">Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat mollitia, quod voluptas praesentium eaque quam ratione saepe alias eius doloribus eos consequatur quidem blanditiis tenetur officiis magni accusantium ipsam. Deleniti?</p>
+    </div>
+
+    <div class="max-w-lg border-state-200 rounded-xl mx-auto shadow-md font-inter p-5">
+        <form action="">
+            <label for="email">
+                <span class="block font-semibold mb-1 text-slate-700 after:content-['*'] after:text-pink-500 after:ml-0.5">Email </span>
+                <input type="email" placeholder="Input email ..." name="" id="" class="px-3 py-2 border shadow rounded w-full block text-sm placeholder:text-slate-300 focus:outline-none focus:ring-1 focus:ring-sky-500 focus:border-sky-500
+                invalid:text-pink-700 invalid:focus:ring-pink-700 invalid:focus:border-pink-700 peer">
+                <p class="text-sm m-1 text-pink-700 invisible peer-invalid:visible">Email tidak valid</p>
+            </label>
+        </form>
+    </div>
+    <hr class="my-20">
+    <div class="w-40 h-40 bg-sky-500 mx-auto rounded-lg shadow-lg hover:scale-150 hover:rotate-45 hover:translate-x-16 hover:bg-pink-500 transition origin-top-left"></div>
+
+    <div class="w-40 h-40 mx-auto mt-20 group">
+        <div class="w-full h-full bg-sky-500 rounded-lg shadow-lg group-hover:rotate-180 origin-top-left transition duration-1000 delay-1000"></div>
+    </div>
+    
+    <div class="w-40 h-40 bg-sky-500 mx-auto rounded-lg shadow-lg mt-20 animate-wiggle"></div>
+
+    <hr class="my-20 border-t-4">
+
+    <div class="container px-5 mx-auto">
+        <div class="border rounded-lg shadow-lg p-10 relative">
+            <div class="w-10 h-10 bg-pink-200 rounded-full flex fixed bottom-5 right-5 cursor-pointer"><a href="#" class="text-2xl m-auto">🔝</a></div>
+            <img src="./1.jpg" alt="Laptop" width="150" class="float-left mr-4">
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum explicabo velit esse eveniet vitae? Labore cum sunt ullam molestiae, alias laudantium qui eligendi quam nisi itaque reprehenderit animi molestias hic reiciendis maxime, sed natus. Quia, rem et. Maxime quod animi, quis iusto assumenda perferendis possimus, repellendus eum ipsa deleniti saepe!
+            </p>
+        </div>
+    </div>
+
+    <div class="container mx-auto border rounded-lg shadow-lg p-10 mt-20 columns-3">
+        <img src="https://source.unsplash.com/600x400" alt="Image" class="mb-4">
+        <img src="https://source.unsplash.com/600x400" alt="Image" class="mb-4">
+        <img src="https://source.unsplash.com/600x400" alt="Image" class="mb-4">
+        <img src="https://source.unsplash.com/600x400" alt="Image" class="mb-4">
+        <img src="https://source.unsplash.com/600x400" alt="Image" class="mb-4">
+        <img src="https://source.unsplash.com/600x400" alt="Image" class="mb-4">
+    </div>
+
     <div class="mb-96"></div>
+    <script>
+        const checkbox = document.querySelector('#toggle');
+        const html = document.querySelector('html');
+
+        checkbox.addEventListener('click', function(){
+            checkbox.checked ? html.classList.add('dark'): html.classList.remove('dark');
+        });
+    </script>
 </body>
 </html>
